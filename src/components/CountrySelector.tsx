@@ -38,8 +38,8 @@ const CountrySelector: React.FC = () => {
   return (
     <Select
       options={countries}
-      placeholder="Select your country..."
-      className="country-selector"
+      placeholder="Select Country..."
+      className="w-3/4"
       components={{ Option: FlagOption }}
       isSearchable
     />

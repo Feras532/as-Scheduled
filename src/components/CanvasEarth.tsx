@@ -1,15 +1,13 @@
 import { Application } from '@splinetool/runtime';
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react';
 
 const CanvasEarth = () => {
-
     const canvasRef = useRef(null);
 
     useEffect(() => {
         if (canvasRef.current) {
             const app = new Application(canvasRef.current);
             app.load('https://prod.spline.design/03n0spMTVRHaY84I/scene.splinecode')
-
                 .then(() => {
                     // Spline scene is loaded
                 })
@@ -20,8 +18,13 @@ const CanvasEarth = () => {
     }, []);
 
     return (
-        <canvas ref={canvasRef}></canvas>
-    )
-}
 
-export default CanvasEarth
+        <canvas
+            ref={canvasRef}
+            className="relative mx-auto object-cover max-w-full" // Added max-width
+        />
+
+    );
+};
+
+export default CanvasEarth;
