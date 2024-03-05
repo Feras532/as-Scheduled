@@ -19,10 +19,7 @@ const CanvasEarth = () => {
 
     return (
 
-        <canvas
-            ref={canvasRef}
-            className="relative mx-auto object-cover max-w-full" // Added max-width
-        />
+        <canvas ref={canvasRef} className="max-h-screen" />
 
     );
 };
