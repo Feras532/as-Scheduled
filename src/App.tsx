@@ -7,8 +7,8 @@ function App() {
 
 
   return (
-    <div className="flex flex-col justify-center items-center p-6 bg-[#191A19]">
-      <img src={logo} alt="logo" className='h-20' />
+    <div className="flex flex-col items-center p-6 bg-[#191A19] h-screen">
+      {/* <img src={logo} alt="logo" className='h-20' /> */}
       <CanvasEarth />
       <TimeZone />
 

@@ -1,30 +1,49 @@
 import React from 'react';
-import Select from 'react-select';
+import Select, { components } from 'react-select';
+import countriesData from '../../countries.json';
 
-// Define the list of countries with their flag emojis and country names, including types
 type CountryOption = {
-    value: string;
-    label: string;
+  value: string;
+  pin: string; // is used for the src of the image as a PIN
+  label: JSX.Element;
 };
 
-const countries: CountryOption[] = [
-    { value: 'us', label: '🇺🇸 United States' },
-    { value: 'gb', label: '🇬🇧 United Kingdom' },
-    { value: 'fr', label: '🇫🇷 France' },
-    // Add more countries as needed
-];
-const CountrySelector: React.FC = () => {
-    // No need for explicit type annotation if using React.FC
-    return (
-        <Select
-            options={countries}
-            placeholder="Select your country..."
-            className=""
-            isSearchable
+// Define a custom Option component for react-select that will render the flag image
+const FlagOption = (props: any) => (
+  <components.Option {...props}>
+    <div className='flex items-center'>
+      <img
+        src={`https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/${props.data.pin}.svg`}
+        alt={props.data.label}
+        className='h-6 w-6'
+      />
+      <span className="ml-2">{props.data.label}</span>
+    </div>
+  </components.Option>
+);
 
-        // Add more props as needed
-        />
-    );
+// Map the countries from the JSON file to the expected format for react-select
+const countries: CountryOption[] = countriesData.map((country) => ({
+  value: country.name,
+  pin: country.code,
+  label: (
+    <div className='flex items-center'>
+      <span className='ml-4'>{country.name}</span>
+
+    </div>
+  ),
+}));
+
+const CountrySelector: React.FC = () => {
+  return (
+    <Select
+      options={countries}
+      placeholder="Select your country..."
+      className="country-selector"
+      components={{ Option: FlagOption }}
+      isSearchable
+    />
+  );
 };
 
 export default CountrySelector;
