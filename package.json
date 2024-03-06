@@ -12,12 +12,16 @@
   "dependencies": {
     "@splinetool/runtime": "^1.0.55",
     "country-flag-icons": "^1.5.9",
+    "date-fns": "^3.3.1",
+    "moment-timezone": "^0.5.45",
     "react": "^18.2.0",
+    "react-datepicker": "^6.2.0",
     "react-dom": "^18.2.0",
     "react-select": "^5.8.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",
+    "@types/react-datepicker": "^6.0.3",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",

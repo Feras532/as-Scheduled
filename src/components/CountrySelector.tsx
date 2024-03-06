@@ -29,12 +29,21 @@ const countries: CountryOption[] = countriesData.map((country) => ({
   label: (
     <div className='flex items-center'>
       <span className='ml-4'>{country.name}</span>
-
     </div>
   ),
 }));
 
-const CountrySelector: React.FC = () => {
+type Props = {
+  onChange: (country: string) => void;
+};
+
+const CountrySelector: React.FC<Props> = ({ onChange }) => {
+  const handleCountryChange = (selectedOption: CountryOption | null): void => {
+    if (selectedOption) {
+      onChange(selectedOption.value);
+    }
+  };
+
   return (
     <Select
       options={countries}
@@ -42,6 +51,7 @@ const CountrySelector: React.FC = () => {
       className="w-3/4"
       components={{ Option: FlagOption }}
       isSearchable
+      onChange={handleCountryChange}
     />
   );
 };
