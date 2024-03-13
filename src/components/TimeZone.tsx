@@ -4,6 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment-timezone';
 import CountrySelector from './CountrySelector';
 import arrowDown from '../assets/down-arrow.png';
+import schedule from "../assets/schedule.png"
 
 const TimeZone: React.FC = () => {
     const [startDate, setStartDate] = useState<Date | null>(new Date());
@@ -43,9 +44,12 @@ const TimeZone: React.FC = () => {
     return (
         <div className='absolute inset-x-0 top-80 mx-auto px-4 sm:px-6 lg:px-8'>
             <div className='bg-[#D8E9A8] w-full max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 rounded-xl shadow-xl text-center '>
-                <h2 className='text-3xl font-bold mb-4 text-[#1E5128]'>Time Zone Converter</h2>
+                <h2 className='text-3xl font-bold mb-4 text-[#1E5128]'>
+                    ⏳Time Zone Converter⏳
+                </h2>
                 <div className='flex flex-col items-center'>
                     <div className='flex flex-row justify-around'>
+                        <img src={schedule} alt="scheduleIcon" className='h-10 m-3' />
                         <DatePicker
                             selected={startDate}
                             onChange={handleDateChange}
@@ -53,7 +57,7 @@ const TimeZone: React.FC = () => {
                             timeIntervals={1}
                             timeCaption='Time'
                             dateFormat='MMMM d, yyyy h:mm aa'
-                            className='p-2 rounded text-[#191A19]'
+                            className='p-2 rounded text-[#191A19] mb-3 mt-3'
                             wrapperClassName='date-picker'
                         />
                     </div>

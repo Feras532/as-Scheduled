@@ -1,44 +1,41 @@
 import React from 'react';
-import Select, { components } from 'react-select';
-import countriesData from '../../countries.json';
+import Select from 'react-select';
+import moment from 'moment-timezone';
 
-type CountryOption = {
+type TimezoneOption = {
   value: string;
-  pin: string; // is used for the src of the image as a PIN
-  label: JSX.Element;
+  label: string;
+  offset: string;
 };
 
-// Define a custom Option component for react-select that will render the flag image
-const FlagOption = (props: any) => (
-  <components.Option {...props}>
-    <div className='flex items-center'>
-      <img
-        src={`https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/${props.data.pin}.svg`}
-        alt={props.data.label}
-        className='h-6 w-6'
-      />
-      <span className="ml-2">{props.data.label}</span>
-    </div>
-  </components.Option>
-);
+// Function to format the label with GMT offset and current time
+const formatLabel = (zoneName: string): string => {
+  const offset = moment.tz(zoneName).format('Z'); // Get the GMT offset
+  const currentTime = moment.tz(zoneName).format('HH:mm'); // Get the current time
+  const label = zoneName.replace(/_/g, ' ');
+  return `${label} (GMT${offset}, ${currentTime})`;
+};
 
-// Map the countries from the JSON file to the expected format for react-select
-const countries: CountryOption[] = countriesData.map((country) => ({
-  value: country.name,
-  pin: country.code,
-  label: (
-    <div className='flex items-center'>
-      <span className='ml-4'>{country.name}</span>
-    </div>
-  ),
-}));
+// Function to get all time zone names as options for react-select
+const getTimezoneOptions = (): TimezoneOption[] => {
+  return moment.tz.names().map((zoneName) => {
+    const offset = moment.tz(zoneName).utcOffset();
+    return {
+      value: zoneName,
+      label: formatLabel(zoneName),
+      offset: offset.toString(),
+    };
+  }).sort((a, b) => parseInt(a.offset) - parseInt(b.offset)); // Sort by GMT offset
+};
+
+const timezones = getTimezoneOptions();
 
 type Props = {
-  onChange: (country: string) => void;
+  onChange: (timezone: string) => void;
 };
 
-const CountrySelector: React.FC<Props> = ({ onChange }) => {
-  const handleCountryChange = (selectedOption: CountryOption | null): void => {
+const TimezoneSelector: React.FC<Props> = ({ onChange }) => {
+  const handleTimezoneChange = (selectedOption: TimezoneOption | null): void => {
     if (selectedOption) {
       onChange(selectedOption.value);
     }
@@ -46,14 +43,14 @@ const CountrySelector: React.FC<Props> = ({ onChange }) => {
 
   return (
     <Select
-      options={countries}
-      placeholder="Select Country..."
-      className="w-3/4"
-      components={{ Option: FlagOption }}
+      options={timezones}
+      placeholder="Select Time Zone..."
+      className="w-full"
       isSearchable
-      onChange={handleCountryChange}
+      onChange={handleTimezoneChange}
+      formatGroupLabel={(group) => group.label} // You can add group formatting if you decide to group by region
     />
   );
 };
 
-export default CountrySelector;
+export default TimezoneSelector;
