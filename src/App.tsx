@@ -1,5 +1,4 @@
 
-import logo from "./assets/as_Scheduled.png";
 import CanvasEarth from "./components/CanvasEarth"
 import TimeZone from "./components/TimeZone";
 function App() {
