@@ -1,5 +1,5 @@
 {
-  "homepage": "http://feras532.github.io/as-scheduled",
+  "homepage": "https://feras532.github.io/as-scheduled",
   "name": "as-scheduled",
   "private": true,
   "version": "0.0.0",
@@ -10,7 +10,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist -b gh-pages"
   },
   "dependencies": {
     "@splinetool/runtime": "^1.0.55",
