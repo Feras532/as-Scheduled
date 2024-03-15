@@ -6,7 +6,7 @@ interface PopupNotificationProps {
     onClose: () => void;
 }
 
-const PopupNotification: React.FC<PopupNotificationProps> = ({ message, show, onClose }) => {
+const PopupNotification: React.FC<PopupNotificationProps> = ({ message, show, }) => {
     if (!show) return null;
 
     return (
