@@ -70,12 +70,11 @@ const TimeZone: React.FC = () => {
             <div className='bg-[#D8E9A8] w-full max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 rounded-xl shadow-xl text-center relative'>
                 {/* Front of the card */}
                 <div className={`${isFlipped ? 'hidden' : 'block'}`}>
-                    <h2 className='text-3xl font-bold mb-4 text-[#1E5128]'>
+                    <h2 className='text-xl sm:text-2xl lg:text-3xl font-bold mb-4 text-[#1E5128]'>
                         ⏳Time Zone Converter⏳
                     </h2>
                     <div className='flex flex-col items-center'>
                         <div className='flex flex-row justify-around'>
-                            {/* <img src={schedule} alt="scheduleIcon" className='h-10 m-3' /> */}
                             <DatePicker
                                 selected={startDate}
                                 onChange={handleDateChange}
@@ -100,7 +99,6 @@ const TimeZone: React.FC = () => {
                         </button>
                     </div>
                 </div>
-                {/* Back of the card */}
                 {/* Back of the card */}
                 <div className={`${isFlipped ? 'block' : 'hidden'} rotate-y-180 p-8 rounded-lg shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105`}>
                     <h2 className='text-4xl font-bold mb-4 text-[#1E5128] text-center'>
