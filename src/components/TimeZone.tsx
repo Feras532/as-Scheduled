@@ -61,17 +61,17 @@ const TimeZone: React.FC = () => {
                             wrapperClassName='date-picker'
                         />
                     </div>
-                    From
+
                     <CountrySelector onChange={handleFromCountryChange} />
                     <img src={arrowDown} alt='arrow down' className='h-6 w-6 flex items-center mt-2 mb-2' />
-                    To
+
                     <CountrySelector onChange={handleToCountryChange} />
                 </div>
 
                 <div className='flex flex-col justify-around items-center mt-4'>
                     <div className='text-[#4E9F3D]'></div>
 
-                    <button onClick={handleConvert} className='mt-7 bg-[#4E9F3D] text-white p-3 rounded hover:bg-[#1E5128] transition'>
+                    <button onClick={handleConvert} className='mt-7 bg-[#4E9F3D] text-white p-3 rounded hover:bg-[#1E5128] transition w-40'>
                         Convert
                     </button>
                 </div>
